@@ -146,7 +146,17 @@ include('includes/navbar.php');
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
+		<!-- <?php
+			if(isset($_SESSION["status"]) && $_SESSION["status"] != ''){
+				echo '<div class="alert alert-'.$_SESSION['status_code'].'" role="alert">'
+						.$_SESSION['status'].
+					'<button type="submit" name="close" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button></div>';
+			}
+		?> -->
 		<div class="card-header py-3">
+			
 			<h6 class="m-0 font-weight-bold text-primary">Tài khoản
 				<button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addadminprofile">
 					Thêm
@@ -155,7 +165,6 @@ include('includes/navbar.php');
 		</div>
 
 		<div class="card-body">
-
 			<div class="table-responsive">
 				<?php
 				$query = "SELECT * FROM admin";
@@ -183,14 +192,14 @@ include('includes/navbar.php');
 									<td><?php echo $row['email']; ?></td>
 									<td><?php echo $row['phonenumber']; ?></td>
 									<td>
-										<button type="button" class="btn btn-success editBtn" id="editBtn" value="<?php echo $row['idadmin']; ?>"> EDIT</button>
+										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['idadmin']; ?>"> Sửa</button>
 									</td>
 									<td>
 										<!-- <a href="#" class="deleteBtn" id="deleteBtn" value="<?php echo $row['idadmin']; ?>">
 											<i class="fa fa-trash" aria-hidden="true" style="color: #f14c4c;"></i>
 										</a> -->
 										<button type="button" class="btn btn-danger deleteBtn" 
-											id="deleteBtn" value="<?php echo $row['idadmin']; ?>"> DELETE</button>
+											id="deleteBtn" value="<?php echo $row['idadmin']; ?>"> Xóa </button>
 									</td>
 								</tr>
 						<?php

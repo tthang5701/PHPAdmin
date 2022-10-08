@@ -16,7 +16,7 @@ if(isset($_POST['registerbtn']))
     if(mysqli_num_rows($username_query_run) > 0)
     {
         $_SESSION['status'] = "Tên đăng nhập đã tồn tại";
-        $_SESSION['status_code'] = "error";
+        $_SESSION['status_code'] = "danger";
         header('Location: register.php');  
     }
     else
@@ -30,14 +30,14 @@ if(isset($_POST['registerbtn']))
             if($query_run)
             {
                 // echo "Saved";
-                $_SESSION['status'] = "Tạo tài khoản thành công";
+                $_SESSION['status'] = "Thêm thành công";
                 $_SESSION['status_code'] = "success";
                 header('Location: register.php');
             }
             else 
             {
                 $_SESSION['status'] = "Đã có lỗi xảy ra";
-                $_SESSION['status_code'] = "error";
+                $_SESSION['status_code'] = "danger";
                 header('Location: register.php');  
             }
         }

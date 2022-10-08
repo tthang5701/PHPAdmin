@@ -6,7 +6,7 @@
 </head>
 
 <body>
-	<button type="button" name="edit_btn" class="btn btn-success" value="123" id="edit"> EDIT</button>
+	<button type="button" name="edit_btn" class="btn btn-secondary" value="123" id="edit"> Sửa</button>
 	<script>
 		$('.edit_btn').click(function() {
 			var id = document.getElementById("edit");
