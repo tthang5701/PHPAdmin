@@ -13,7 +13,7 @@ include('includes/navbar.php');
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="addAccount.php" method="POST" novalidate>
+			<form action="addAccount.php" method="POST" enctype = "multipart/form-data">
 
 				<div class="modal-body">
 					<div class="form-group">
@@ -26,24 +26,24 @@ include('includes/navbar.php');
 					</div>
 					<div class="form-group">
 						<label> Số điện thoại </label>
-						<input type="phone" name="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
+						<input  type="tel" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" name="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
 					</div>
 					<div class="form-group">
 						<label> Tên đăng nhập </label>
-						<input type="text" name="username" class="form-control" placeholder="Nhập tên đăng nhập">
+						<input type="text" name="username" class="form-control" placeholder="Nhập tên đăng nhập" required>
 					</div>
 					<div class="form-group">
 						<label> Mật khẩu </label>
-						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
+						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu" required>
 					</div>
 					<div class="form-group">
 						<label> Xác nhận mật khẩu </label>
-						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu">
+						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
 					</div>
-					<!-- <div class="form-group">
+					<div class="form-group">
 						<label> Ảnh đại diện </label>
-						<input type="file" name="avatar" class="form-control" placeholder="Nhập lại mật khẩu">
-					</div> -->
+						<input type="file" name="avatar" class="form-control-file">
+					</div>
 
 				</div>
 				<div class="modal-footer">
@@ -67,7 +67,7 @@ include('includes/navbar.php');
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="editAccount.php" method="POST">
+			<form action="editAccount.php" method="POST" enctype = "multipart/form-data">
 				<input type="hidden" name="id" id="id">
 				<div class="modal-body">
 					<div class="form-group">
@@ -80,7 +80,7 @@ include('includes/navbar.php');
 					</div>
 					<div class="form-group">
 						<label> Số điện thoại </label>
-						<input type="phone" name="phonenumber" id="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
+						<input type="tel" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" name="phonenumber" id="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
 					</div>
 					<div class="form-group">
 						<label> Tên đăng nhập </label>
@@ -88,16 +88,16 @@ include('includes/navbar.php');
 					</div>
 					<div class="form-group">
 						<label> Mật khẩu </label>
-						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
+						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu" required>
 					</div>
 					<div class="form-group">
 						<label> Xác nhận mật khẩu</label>
-						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu">
+						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
 					</div>
-					<!-- <div class="form-group">
+					<div class="form-group">
 						<label> Ảnh đại diện </label>
-						<input type="file" name="avatar" class="form-control" placeholder="Nhập lại mật khẩu">
-					</div> -->
+						<input id="avatar" type="file" name="avatar" class="form-control-file">
+					</div>
 
 				</div>
 				<div class="modal-footer">
@@ -146,15 +146,16 @@ include('includes/navbar.php');
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
-		<!-- <?php
+		 <?php
 			if(isset($_SESSION["status"]) && $_SESSION["status"] != ''){
-				echo '<div class="alert alert-'.$_SESSION['status_code'].'" role="alert">'
-						.$_SESSION['status'].
-					'<button type="submit" name="close" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				  </button></div>';
-			}
-		?> -->
+		?>
+		<div class="alert alert-<?=$_SESSION['status_code']?>">
+			<?php
+				echo $_SESSION['status'];
+				unset($_SESSION['status']);
+			?>
+		</div>
+		<?php } ?>
 		<div class="card-header py-3">
 			
 			<h6 class="m-0 font-weight-bold text-primary">Tài khoản
@@ -252,5 +253,14 @@ include('includes/footer.php');
 			var id = $(this).val();
 			$('#delete_id').val(id);
 		});
+	});
+</script>
+
+<script>
+	$('#addadminprofile').on('hidden.bs.modal', function() {
+		$('#addadminprofile form')[0].reset();
+	});
+	$('#editmodal').on('hidden.bs.modal', function() {
+		$('#editmodal form')[0].reset();
 	});
 </script>

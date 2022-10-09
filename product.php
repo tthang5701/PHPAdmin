@@ -8,7 +8,7 @@ include('includes/navbar.php');
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Tạo tài khoản</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Tạo sản phẩm</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -18,37 +18,63 @@ include('includes/navbar.php');
 				<div class="modal-body">
 					<div class="form-group">
 						<label> Mã sản phẩm </label>
-						<input type="text" name="product_code" class="form-control" placeholder="Nhập mã sản phẩm">
+						<input type="text" name="code" class="form-control" placeholder="Nhập mã sản phẩm" required>
 					</div>
 					<div class="form-group">
 						<label> Tên sản phẩm </label>
-						<input type="text" name="product_name" class="form-control" placeholder="Nhập tên sản phẩm">
+						<input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm" required>
 					</div>
 					<div class="form-group">
-						<label> Giá </label>
-						<input type="phone" name="price" class="form-control" placeholder="Nhập giá">
+						<label> Giá niêm yết</label>
+						<input type="number" name="price" class="form-control" placeholder="Nhập giá niêm yết" required>
+					</div>
+					<div class="form-group">
+						<label> Giảm giá</label>
+						<input type="number" name="discount" class="form-control" placeholder="Nhập giá giảm">
 					</div>
 					<div class="form-group">
 						<label> Số lượng </label>
-						<input type="text" name="number" class="form-control" placeholder="Nhập tên đăng nhập">
+						<input type="text" name="number" class="form-control" placeholder="Nhập số lượng">
 					</div>
 					<div class="form-group">
 						<label> Loại sản phẩm </label>
-						<input type="text" name="product_type" class="form-control" placeholder="Nhập mật khẩu">
+						<select class="form-control" aria-label="Default select example" name="type" required>
+							<option value="" selected disabled hidden>Chọn loại sản phẩm</option>
+							<?php
+							$query = "SELECT * FROM loaisp";
+							$query_run = mysqli_query($connection, $query);
+							while ($row = mysqli_fetch_assoc($query_run)) {
+							?>
+								<option value="<?php echo $row['idloaisp']; ?>"><?php echo $row['tenloaisp']; ?></option>
+							<?php } ?>
+						</select>
 					</div>
 					<div class="form-group">
 						<label> Nhà sản xuất</label>
-						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu">
+						<select class="form-control" aria-label="Default select example" name="producer" required>
+							<option value="" selected disabled hidden>Chọn nhà sản xuất</option>
+							<?php
+							$query = "SELECT * FROM hieusp";
+							$query_run = mysqli_query($connection, $query);
+							while ($row = mysqli_fetch_assoc($query_run)) {
+							?>
+								<option value="<?php echo $row['idhieusp']; ?>"><?php echo $row['tenhieusp']; ?></option>
+							<?php } ?>
+						</select>
 					</div>
-					<!-- <div class="form-group">
-						<label> Ảnh đại diện </label>
-						<input type="file" name="avatar" class="form-control" placeholder="Nhập lại mật khẩu">
-					</div> -->
+					<div class="form-group">
+						<label> Hình ảnh </label>
+						<input type="file" name="image" class="form-control-file" placeholder="Chọn ảnh" required>
+					</div>
+					<div class="form-group">
+						<label> Mô tả </label>
+						<textarea type="text" name="description" class="form-control" placeholder="Nhập mô tả" rows="10"></textarea>
+					</div>
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-					<button type="submit" name="registerbtn" class="btn btn-primary">Lưu</button>
+					<button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+					<button type="submit" name="addbtn" class="btn btn-primary">Lưu</button>
 				</div>
 			</form>
 
@@ -62,46 +88,71 @@ include('includes/navbar.php');
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Sửa tài khoản</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Sửa sản phẩm</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="editAccount.php" method="POST">
+			<form action="editProduct.php" method="POST">
 				<input type="hidden" name="id" id="id">
 				<div class="modal-body">
 					<div class="form-group">
-						<label> Họ và tên </label>
-						<input type="text" name="fullname" id="fullname" class="form-control" placeholder="Nhập họ và tên">
+						<label> Mã sản phẩm </label>
+						<input id="code" disabled type="text" name="code" class="form-control" placeholder="Nhập mã sản phẩm">
 					</div>
 					<div class="form-group">
-						<label> Email </label>
-						<input type="email" name="email" id="email" class="form-control" placeholder="Nhập email">
+						<label> Tên sản phẩm </label>
+						<input id="name" type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
 					</div>
 					<div class="form-group">
-						<label> Số điện thoại </label>
-						<input type="phone" name="phonenumber" id="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
+						<label> Giá niêm yết</label>
+						<input id="price" type="number" name="price" class="form-control" placeholder="Nhập giá niêm yết">
 					</div>
 					<div class="form-group">
-						<label> Tên đăng nhập </label>
-						<input type="text" name="username" id="username" class="form-control" placeholder="Nhập tên đăng nhập">
+						<label> Giảm giá</label>
+						<input id="discount" type="number" name="discount" class="form-control" placeholder="Nhập giá giảm">
 					</div>
 					<div class="form-group">
-						<label> Mật khẩu </label>
-						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
+						<label> Số lượng </label>
+						<input id="number" type="text" name="number" class="form-control" placeholder="Nhập số lượng">
 					</div>
 					<div class="form-group">
-						<label> Xác nhận mật khẩu</label>
-						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu">
+						<label> Loại sản phẩm </label>
+						<select id="type" class="form-control" aria-label="Default select example" name="type">
+							<option value="" selected disabled hidden>Chọn loại sản phẩm</option>
+							<?php
+							$query = "SELECT * FROM loaisp";
+							$query_run = mysqli_query($connection, $query);
+							while ($row = mysqli_fetch_assoc($query_run)) {
+							?>
+								<option value="<?php echo $row['idloaisp']; ?>"><?php echo $row['tenloaisp']; ?></option>
+							<?php } ?>
+						</select>
 					</div>
-					<!-- <div class="form-group">
-						<label> Ảnh đại diện </label>
-						<input type="file" name="avatar" class="form-control" placeholder="Nhập lại mật khẩu">
-					</div> -->
-
+					<div class="form-group">
+						<label> Nhà sản xuất</label>
+						<select id="producer" class="form-control" aria-label="Default select example" name="producer">
+							<option value="" selected disabled hidden>Chọn nhà sản xuất</option>
+							<?php
+							$query = "SELECT * FROM hieusp";
+							$query_run = mysqli_query($connection, $query);
+							while ($row = mysqli_fetch_assoc($query_run)) {
+							?>
+								<option value="<?php echo $row['idhieusp']; ?>"><?php echo $row['tenhieusp']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label> Hình ảnh </label>
+						<input id="image" type="file" name="image" class="form-control-file" placeholder="Chọn ảnh">
+					</div>
+					<div class="form-group">
+						<label> Mô tả </label>
+						<textarea id="description" type="text" name="description" class="form-control" placeholder="Nhập mô tả" rows="10"></textarea>
+					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+					<button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
 					<button type="submit" name="editbtn" class="btn btn-primary">Lưu</button>
 				</div>
 			</form>
@@ -122,7 +173,7 @@ include('includes/navbar.php');
 				</button>
 			</div>
 
-			<form action="deleteAccount.php" method="POST">
+			<form action="deleteProduct.php" method="POST">
 
 				<div class="modal-body">
 
@@ -131,7 +182,7 @@ include('includes/navbar.php');
 					<h4> Bạn chắc chắn muốn xóa?</h4>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal"> Hủy </button>
+					<button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal"> Hủy </button>
 					<button type="submit" name="deletedata" class="btn btn-primary"> Xóa </button>
 				</div>
 			</form>
@@ -146,15 +197,16 @@ include('includes/navbar.php');
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
-		<!-- <?php
-			if(isset($_SESSION["status"]) && $_SESSION["status"] != ''){
-				echo '<div class="alert alert-'.$_SESSION['status_code'].'" role="alert">'
-						.$_SESSION['status'].
-					'<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				  </button></div>';
-			}
-		?> -->
+		<?php
+		if (isset($_SESSION["status"]) && $_SESSION["status"] != '') {
+		?>
+			<div class="alert alert-<?= $_SESSION['status_code'] ?>">
+				<?php
+				echo $_SESSION['status'];
+				unset($_SESSION['status']);
+				?>
+			</div>
+		<?php } ?>
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Sản phẩm
 				<button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addadminprofile">
@@ -195,11 +247,7 @@ include('includes/navbar.php');
 										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['idsanpham']; ?>"> Sửa </button>
 									</td>
 									<td>
-										<!-- <a href="#" class="deleteBtn" id="deleteBtn" value="<?php echo $row['idadmin']; ?>">
-											<i class="fa fa-trash" aria-hidden="true" style="color: #f14c4c;"></i>
-										</a> -->
-										<button type="button" class="btn btn-danger deleteBtn" 
-											id="deleteBtn" value="<?php echo $row['idsanpham']; ?>"> Xóa </button>
+										<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" value="<?php echo $row['idsanpham']; ?>"> Xóa </button>
 									</td>
 								</tr>
 						<?php
@@ -223,7 +271,6 @@ include('includes/scripts.php');
 include('includes/footer.php');
 ?>
 
-
 <script>
 	$(document).ready(function() {
 		$('.editBtn').on('click', function() {
@@ -236,10 +283,11 @@ include('includes/footer.php');
 			}).get();
 
 			$('#id').val(id);
-			$('#fullname').val(data[0]);
-			$('#username').val(data[1]);
-			$('#email').val(data[2]);
-			$('#phonenumber').val(data[3]);
+			$('#code').val(data[0]);
+			$('#name').val(data[1]);
+			$('#price').val(data[2]);
+			$('#number').val(data[3]);
+
 		});
 	});
 </script>
@@ -252,5 +300,14 @@ include('includes/footer.php');
 			var id = $(this).val();
 			$('#delete_id').val(id);
 		});
+	});
+</script>
+
+<script>
+	$('#addadminprofile').on('hidden.bs.modal', function() {
+		$('#addadminprofile form')[0].reset();
+	});
+	$('#editmodal').on('hidden.bs.modal', function() {
+		$('#editmodal form')[0].reset();
 	});
 </script>

@@ -1,17 +1,11 @@
 <?php
 include('security.php');
 
-if(isset($_POST['registerbtn']))
+if(isset($_POST['searchBtn']))
 {
-	$fullname = $_POST['fullname'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-	$phoneNumber = $_POST['phonenumber'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['confirmpassword'];
-	$avatar = $_FILES['avatar']["name"];
+	$search = $_POST['search'];
 
-    $username_query = "SELECT * FROM admin WHERE username='$username' ";
+    $username_query = "SELECT * FROM loaisp WHERE username='$username' ";
     $username_query_run = mysqli_query($connection, $username_query);
     if(mysqli_num_rows($username_query_run) > 0)
     {

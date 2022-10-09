@@ -10,7 +10,7 @@ if(isset($_POST['editbtn']))
 	$phoneNumber = $_POST['phonenumber'];
     $password = $_POST['password'];
     $cpassword = $_POST['confirmpassword'];
-	$avatar = $_POST['avatar'];
+	$avatar = $_FILES['avatar']["name"];
 
 	$username_query = "SELECT * FROM admin WHERE username='$username' AND idadmin!='$id' ";
     $username_query_run = mysqli_query($connection, $username_query);
@@ -27,6 +27,10 @@ if(isset($_POST['editbtn']))
 
 			if($query_run)
 			{
+				$uploaddir = './avatar/';
+				$uploadfile = $uploaddir . basename($_FILES['avatar']['name']);
+				move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadfile);
+				
 				$_SESSION['status'] = "Sửa thành công";
 				$_SESSION['status_code'] = "success";
 				header('Location: register.php'); 

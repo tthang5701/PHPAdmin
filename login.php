@@ -8,10 +8,11 @@ if(isset($_POST['login_btn']))
 
     $query = "SELECT * FROM admin WHERE username='$email_login' AND password='$password_login' LIMIT 1";
     $query_run = mysqli_query($connection, $query);
-
-   if(mysqli_fetch_array($query_run))
+	$result = mysqli_fetch_array($query_run);
+   if($result > 0)
    {
         $_SESSION['username'] = $email_login;
+		$_SESSION['avatar'] = $result['avatar'];
         header('Location: home.php');
    } 
    else

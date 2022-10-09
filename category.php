@@ -18,7 +18,7 @@ include('includes/navbar.php');
 				<div class="modal-body">
 					<div class="form-group">
 						<label> Tên danh mục </label>
-						<input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục">
+						<input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục" required>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -47,7 +47,7 @@ include('includes/navbar.php');
 				<div class="modal-body">
 					<div class="form-group">
 						<label> Tên danh mục </label>
-						<input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên danh mục">
+						<input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên danh mục" required>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -96,17 +96,28 @@ include('includes/navbar.php');
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
-		<!-- <?php
-			if(isset($_SESSION["status"]) && $_SESSION["status"] != ''){
-				echo '<div class="alert alert-'.$_SESSION['status_code'].'" role="alert">'
-						.$_SESSION['status'].
-					'<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				  </button></div>';
-			}
-		?> -->
+		<?php
+		if (isset($_SESSION["status"]) && $_SESSION["status"] != '') {
+		?>
+			<div class="alert alert-<?= $_SESSION['status_code'] ?>">
+				<?php
+				echo $_SESSION['status'];
+				unset($_SESSION['status']);
+				?>
+			</div>
+		<?php } ?>
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Danh mục
+				<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="searchCategory.php" method="POST">
+					<div class="input-group">
+						<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="button" name="searchBtn">
+								<i class="fas fa-search fa-sm"></i>
+							</button>
+						</div>
+					</div>
+				</form>
 				<button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addadminprofile">
 					Thêm
 				</button>
@@ -141,8 +152,7 @@ include('includes/navbar.php');
 										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['idloaisp']; ?>"> Sửa</button>
 									</td>
 									<td>
-										<button type="button" class="btn btn-danger deleteBtn" 
-											id="deleteBtn" value="<?php echo $row['idloaisp']; ?>"> Xóa </button>
+										<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" value="<?php echo $row['idloaisp']; ?>"> Xóa </button>
 									</td>
 								</tr>
 						<?php
@@ -191,5 +201,14 @@ include('includes/footer.php');
 			var id = $(this).val();
 			$('#delete_id').val(id);
 		});
+	});
+</script>
+
+<script>
+	$('#addadminprofile').on('hidden.bs.modal', function() {
+		$('#addadminprofile form')[0].reset();
+	});
+	$('#editmodal').on('hidden.bs.modal', function() {
+		$('#editmodal form')[0].reset();
 	});
 </script>
