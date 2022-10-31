@@ -154,8 +154,8 @@ include('includes/navbar.php');
 							<th> Mã </th>
 							<th> Tiêu đề </th>
 							<th> Nội dung </th>
-							<th> Sửa </th>
-							<th> Xóa </th>
+							<th> Xem </th>
+							<th> Cập nhật </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -168,15 +168,12 @@ include('includes/navbar.php');
 									<td><?php echo $row['name']; ?></td>
 									<td><?php echo $row['content']; ?></td>
 									<td>
-										<button type="button" class="btn btn-secondary editBtn" id="editBtn" 
-											value="<?php echo $row['id']; ?>"> Sửa</button>
+										<button type="button" class="btn btn-danger deleteBtn" 
+											id="deleteBtn" value="<?php echo $row['id']; ?>"> Xem </button>
 									</td>
 									<td>
-										<!-- <a href="#" class="deleteBtn" id="deleteBtn" value="<?php echo $row['id']; ?>">
-											<i class="fa fa-trash" aria-hidden="true" style="color: #f14c4c;"></i>
-										</a> -->
-										<button type="button" class="btn btn-danger deleteBtn" 
-											id="deleteBtn" value="<?php echo $row['id']; ?>"> Xóa </button>
+										<button type="button" class="btn btn-secondary editBtn" id="editBtn" 
+											value="<?php echo $row['id']; ?>"> Sửa </button>
 									</td>
 								</tr>
 						<?php

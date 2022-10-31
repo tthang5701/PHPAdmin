@@ -49,12 +49,12 @@ include('includes/scripts.php')
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Doanh thu</div>
-<?php
-				$sql = "SELECT id from products ";
+				<?php
+				$sql = "SELECT sum(total_price) as total FROM order_detail ";
 				$query = mysqli_query($connection, $sql);
-				$totalProduct = mysqli_num_rows($query);
+				$totalProduct = $query->fetch_assoc();
 				?>
-			  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo htmlentities($totalProduct); ?></div>
+			  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalProduct["total"]; ?></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -72,7 +72,7 @@ include('includes/scripts.php')
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Đơn hàng</div>
               <?php
-				$sql = "SELECT id from products ";
+				$sql = "SELECT id from orders ";
 				$query = mysqli_query($connection, $sql);
 				$totalProduct = mysqli_num_rows($query);
 				?>
