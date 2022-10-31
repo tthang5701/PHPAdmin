@@ -13,7 +13,7 @@ include('includes/navbar.php');
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="addProduct.php" method="POST">
+			<form action="addProduct.php" method="POST" enctype = "multipart/form-data">
 
 				<div class="modal-body">
 					<div class="form-group">
@@ -25,12 +25,8 @@ include('includes/navbar.php');
 						<input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm" required>
 					</div>
 					<div class="form-group">
-						<label> Giá niêm yết</label>
-						<input type="number" name="price" class="form-control" placeholder="Nhập giá niêm yết" required>
-					</div>
-					<div class="form-group">
-						<label> Giảm giá</label>
-						<input type="number" name="discount" class="form-control" placeholder="Nhập giá giảm">
+						<label> Giá </label>
+						<input type="number" name="price" class="form-control" placeholder="Nhập giá " required>
 					</div>
 					<div class="form-group">
 						<label> Số lượng </label>
@@ -41,11 +37,11 @@ include('includes/navbar.php');
 						<select class="form-control" aria-label="Default select example" name="type" required>
 							<option value="" selected disabled hidden>Chọn loại sản phẩm</option>
 							<?php
-							$query = "SELECT * FROM loaisp";
+							$query = "SELECT * FROM categories";
 							$query_run = mysqli_query($connection, $query);
 							while ($row = mysqli_fetch_assoc($query_run)) {
 							?>
-								<option value="<?php echo $row['idloaisp']; ?>"><?php echo $row['tenloaisp']; ?></option>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -54,11 +50,11 @@ include('includes/navbar.php');
 						<select class="form-control" aria-label="Default select example" name="producer" required>
 							<option value="" selected disabled hidden>Chọn nhà sản xuất</option>
 							<?php
-							$query = "SELECT * FROM hieusp";
+							$query = "SELECT * FROM brands";
 							$query_run = mysqli_query($connection, $query);
 							while ($row = mysqli_fetch_assoc($query_run)) {
 							?>
-								<option value="<?php echo $row['idhieusp']; ?>"><?php echo $row['tenhieusp']; ?></option>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -67,10 +63,13 @@ include('includes/navbar.php');
 						<input type="file" name="image" class="form-control-file" placeholder="Chọn ảnh" required>
 					</div>
 					<div class="form-group">
-						<label> Mô tả </label>
-						<textarea type="text" name="description" class="form-control" placeholder="Nhập mô tả" rows="10"></textarea>
+						<label> Mô tả ngắn </label>
+						<textarea type="text" name="content" class="form-control" placeholder="Nhập mô tả ngắn" rows="3"></textarea>
 					</div>
-
+					<div class="form-group">
+						<label> Mô tả chi tiết </label>
+						<textarea type="text" name="description" class="form-control" placeholder="Nhập mô tả chi tiết" rows="5"></textarea>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -93,7 +92,7 @@ include('includes/navbar.php');
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="editProduct.php" method="POST">
+			<form action="editProduct.php" method="POST" enctype = "multipart/form-data">
 				<input type="hidden" name="id" id="id">
 				<div class="modal-body">
 					<div class="form-group">
@@ -105,12 +104,8 @@ include('includes/navbar.php');
 						<input id="name" type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
 					</div>
 					<div class="form-group">
-						<label> Giá niêm yết</label>
-						<input id="price" type="number" name="price" class="form-control" placeholder="Nhập giá niêm yết">
-					</div>
-					<div class="form-group">
-						<label> Giảm giá</label>
-						<input id="discount" type="number" name="discount" class="form-control" placeholder="Nhập giá giảm">
+						<label> Giá </label>
+						<input id="price" type="number" name="price" class="form-control" placeholder="Nhập giá">
 					</div>
 					<div class="form-group">
 						<label> Số lượng </label>
@@ -121,11 +116,11 @@ include('includes/navbar.php');
 						<select id="type" class="form-control" aria-label="Default select example" name="type">
 							<option value="" selected disabled hidden>Chọn loại sản phẩm</option>
 							<?php
-							$query = "SELECT * FROM loaisp";
+							$query = "SELECT * FROM categories";
 							$query_run = mysqli_query($connection, $query);
 							while ($row = mysqli_fetch_assoc($query_run)) {
 							?>
-								<option value="<?php echo $row['idloaisp']; ?>"><?php echo $row['tenloaisp']; ?></option>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -134,11 +129,11 @@ include('includes/navbar.php');
 						<select id="producer" class="form-control" aria-label="Default select example" name="producer">
 							<option value="" selected disabled hidden>Chọn nhà sản xuất</option>
 							<?php
-							$query = "SELECT * FROM hieusp";
+							$query = "SELECT * FROM brands";
 							$query_run = mysqli_query($connection, $query);
 							while ($row = mysqli_fetch_assoc($query_run)) {
 							?>
-								<option value="<?php echo $row['idhieusp']; ?>"><?php echo $row['tenhieusp']; ?></option>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -147,8 +142,12 @@ include('includes/navbar.php');
 						<input id="image" type="file" name="image" class="form-control-file" placeholder="Chọn ảnh">
 					</div>
 					<div class="form-group">
-						<label> Mô tả </label>
-						<textarea id="description" type="text" name="description" class="form-control" placeholder="Nhập mô tả" rows="10"></textarea>
+						<label> Mô tả ngắn </label>
+						<textarea id="content12" type="text" name="content" class="form-control" placeholder="Nhập mô tả ngắn" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+						<label> Mô tả chi tiết </label>
+						<textarea id="description" type="text" name="description" class="form-control" placeholder="Nhập mô tả chi tiết" rows="5"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -219,7 +218,7 @@ include('includes/navbar.php');
 
 			<div class="table-responsive">
 				<?php
-				$query = "SELECT * FROM sanpham";
+				$query = "SELECT * FROM products";
 				$query_run = mysqli_query($connection, $query);
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -229,8 +228,8 @@ include('includes/navbar.php');
 							<th> Tên sản phẩm </th>
 							<th> Giá </th>
 							<th> Số lượng </th>
-							<th> Edit </th>
-							<th> Delete </th>
+							<th> Sửa </th>
+							<th> Xóa </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -239,15 +238,18 @@ include('includes/navbar.php');
 							while ($row = mysqli_fetch_assoc($query_run)) {
 						?>
 								<tr>
-									<td><?php echo $row['masp']; ?></td>
-									<td><?php echo $row['tensp']; ?></td>
-									<td><?php echo $row['giadexuat']; ?></td>
-									<td><?php echo $row['soluong']; ?></td>
+									<td><?php echo $row['id']; ?></td>
+									<td><?php echo $row['name']; ?></td>
+									<td><?php echo $row['price']; ?></td>
+									<td><?php echo $row['quantity']; ?></td>
 									<td>
-										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['idsanpham']; ?>"> Sửa </button>
+										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['id']; ?>"
+											data-category="<?php echo $row['category_id']; ?>" data-brand="<?php echo $row['brand_id']; ?>"
+											data-content="<?php echo $row['content']; ?>" data-description="<?php echo $row['description']; ?>"
+											data-image="<?php echo $row['image']; ?>"> Sửa </button>
 									</td>
 									<td>
-										<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" value="<?php echo $row['idsanpham']; ?>"> Xóa </button>
+										<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" value="<?php echo $row['id']; ?>"> Xóa </button>
 									</td>
 								</tr>
 						<?php
@@ -287,7 +289,15 @@ include('includes/footer.php');
 			$('#name').val(data[1]);
 			$('#price').val(data[2]);
 			$('#number').val(data[3]);
-
+			
+			var category = $(this).attr("data-category");
+			$('#type').val(category);
+			var brand = $(this).attr("data-brand");
+			$('#producer').val(brand);
+			var content = $(this).attr("data-content");
+			$('#content12').val(content);
+			var description = $(this).attr("data-description");
+			$('#description').val(description);
 		});
 	});
 </script>

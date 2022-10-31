@@ -5,7 +5,7 @@ if(isset($_POST['deletedata']))
 {
     $id = $_POST['delete_id'];
 
-	$query = "DELETE FROM sanpham WHERE idsanpham='$id' ";
+	$query = "DELETE FROM products WHERE id='$id' ";
     $query_run = mysqli_query($connection, $query);
  
 	if($query_run)
@@ -17,7 +17,7 @@ if(isset($_POST['deletedata']))
 	else
 	{
 		$_SESSION['status'] = "Đã xảy ra lỗi";
-		$_SESSION['status_code'] = "error";
+		$_SESSION['status_code'] = "danger";
 		header('Location: product.php'); 
 	}
 

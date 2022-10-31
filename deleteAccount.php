@@ -5,7 +5,7 @@ if(isset($_POST['deletedata']))
 {
     $id = $_POST['delete_id'];
 
-	$query = "DELETE FROM admin WHERE idadmin='$id' ";
+	$query = "DELETE FROM users WHERE id='$id' ";
     $query_run = mysqli_query($connection, $query);
  
 	if($query_run)
@@ -17,7 +17,7 @@ if(isset($_POST['deletedata']))
 	else
 	{
 		$_SESSION['status'] = "Đã xảy ra lỗi";
-		$_SESSION['status_code'] = "error";
+		$_SESSION['status_code'] = "danger";
 		header('Location: register.php'); 
 	}
 

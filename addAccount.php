@@ -9,6 +9,8 @@ if(isset($_POST['registerbtn']))
 	$phoneNumber = $_POST['phonenumber'];
     $password = $_POST['password'];
     $cpassword = $_POST['confirmpassword'];
+    $address = $_POST['address'];
+    $role_id = $_POST['role_id'];
 	$avatar = $_FILES['avatar']["name"];
 
     $username_query = "SELECT * FROM admin WHERE username='$username' ";
@@ -23,8 +25,8 @@ if(isset($_POST['registerbtn']))
     {
         if($password === $cpassword)
         {
-            $query = "INSERT INTO admin (fullname, username, email, phonenumber, password, avatar)
-						VALUES ('$fullname', '$username', '$email', '$phoneNumber', '$password', '$avatar')";
+            $query = "INSERT INTO users (name, username, email, phone_number, password, address, role_id, status)
+						VALUES ('$fullname', '$username', '$email', '$phoneNumber', '$password', '$address', '$role_id', '1')";
             $query_run = mysqli_query($connection, $query);
             
             if($query_run)

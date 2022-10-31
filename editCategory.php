@@ -6,7 +6,7 @@ if(isset($_POST['editbtn']))
     $id = $_POST['id'];
     $name = $_POST['name'];
 
-	$query = "UPDATE loaisp SET tenloaisp='$name' WHERE idloaisp='$id' ";
+	$query = "UPDATE categories SET name='$name' WHERE id='$id' ";
 	$query_run = mysqli_query($connection, $query);
 
 	if($query_run)
@@ -18,7 +18,7 @@ if(isset($_POST['editbtn']))
 	else
 	{
 		$_SESSION['status'] = "Đã xảy ra lỗi";
-		$_SESSION['status_code'] = "error";
+		$_SESSION['status_code'] = "danger";
 		header('Location: category.php'); 
 	}
 

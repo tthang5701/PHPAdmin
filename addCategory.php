@@ -5,7 +5,7 @@ if(isset($_POST['addbtn']))
 {
 	$name = $_POST['name'];
 
-	$query = "INSERT INTO loaisp(tenloaisp) VALUES ('$name')";
+	$query = "INSERT INTO categories(name) VALUES ('$name')";
 	$query_run = mysqli_query($connection, $query);
 	
 	if($query_run)
@@ -18,7 +18,7 @@ if(isset($_POST['addbtn']))
 	else 
 	{
 		$_SESSION['error'] = "Đã có lỗi xảy ra";
-		$_SESSION['status_code'] = "error";
+		$_SESSION['status_code'] = "danger";
 		header('Location: category.php');  
 	}
 }

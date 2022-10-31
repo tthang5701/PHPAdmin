@@ -8,54 +8,29 @@ include('includes/navbar.php');
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Tạo tài khoản</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Tạo tin tức</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="addAccount.php" method="POST" enctype = "multipart/form-data">
+			<form action="addNews.php" method="POST" enctype = "multipart/form-data">
 
 				<div class="modal-body">
 					<div class="form-group">
-						<label> Họ và tên </label>
-						<input type="text" name="fullname" class="form-control" placeholder="Nhập họ và tên">
+						<label> Mã </label>
+						<input type="text" name="code" class="form-control" placeholder="Nhập mã" required>
 					</div>
 					<div class="form-group">
-						<label> Email </label>
-						<input type="email" name="email" class="form-control" placeholder="Nhập email">
+						<label> Tiêu đề </label>
+						<input type="text" name="name" class="form-control" placeholder="Nhập tiêu đề" required>
 					</div>
 					<div class="form-group">
-						<label> Số điện thoại </label>
-						<input  type="number" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" name="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
+						<label> Ảnh </label>
+						<input type="file" name="image" class="form-control-file">
 					</div>
 					<div class="form-group">
-						<label> Tên đăng nhập </label>
-						<input type="text" name="username" class="form-control" placeholder="Nhập tên đăng nhập" required>
-					</div>
-					<div class="form-group">
-						<label> Mật khẩu </label>
-						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu" required>
-					</div>
-					<div class="form-group">
-						<label> Xác nhận mật khẩu </label>
-						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
-					</div>
-					<div class="form-group">
-						<label> Địa chỉ </label>
-						<input type="text" name="address" class="form-control" placeholder="Nhập địa chỉ">
-					</div>
-					<div class="form-group">
-						<label> Vai trò </label>
-						<select id="type" class="form-control" aria-label="Default select example" name="role_id" required>
-							<option value="" selected disabled hidden>Chọn vai trò</option>
-							<?php
-							$query = "SELECT * FROM roles";
-							$query_run = mysqli_query($connection, $query);
-							while ($row = mysqli_fetch_assoc($query_run)) {
-							?>
-								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
-							<?php } ?>
-						</select>
+						<label> Nội dung </label>
+						<textarea type="text" name="content" class="form-control" placeholder="Nhập nội dung" rows="5"></textarea>
 					</div>
 
 				</div>
@@ -75,54 +50,30 @@ include('includes/navbar.php');
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Sửa tài khoản</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Sửa tin tức</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="editAccount.php" method="POST" enctype = "multipart/form-data">
+			<form action="editNews.php" method="POST" enctype = "multipart/form-data">
 				<input type="hidden" name="id" id="id">
 				<div class="modal-body">
 					<div class="form-group">
-						<label> Họ và tên </label>
-						<input type="text" name="fullname" id="fullname" class="form-control" placeholder="Nhập họ và tên">
+						<label> Mã </label>
+						<input type="text" name="code" id="code" class="form-control" disabled>
 					</div>
 					<div class="form-group">
-						<label> Email </label>
-						<input type="email" name="email" id="email" class="form-control" placeholder="Nhập email">
+						<label> Tiêu đề </label>
+						<input type="text" name="name" id="name" class="form-control" placeholder="Nhập tiêu đề" required>
 					</div>
 					<div class="form-group">
-						<label> Số điện thoại </label>
-						<input type="number" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" name="phonenumber" id="phonenumber" class="form-control" placeholder="Nhập số điện thoại">
+						<label> Ảnh </label>
+						<input type="file" name="image" id="image" class="form-control-file">
 					</div>
 					<div class="form-group">
-						<label> Tên đăng nhập </label>
-						<input type="text" name="username" id="username" class="form-control" placeholder="Nhập tên đăng nhập">
-					</div>
-					<div class="form-group">
-						<label> Mật khẩu </label>
-						<input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
-					</div>
-					<div class="form-group">
-						<label> Xác nhận mật khẩu</label>
-						<input type="password" name="confirmpassword" class="form-control" placeholder="Nhập lại mật khẩu">
-					</div>
-					<div class="form-group">
-						<label> Địa chỉ </label>
-						<input type="text" name="address" id="address" class="form-control" placeholder="Nhập địa chỉ">
-					</div>
-					<div class="form-group">
-						<label> Vai trò </label>
-						<select id="role" class="form-control" aria-label="Default select example" name="role_id" required>
-							<option value="" selected disabled hidden>Chọn vai trò</option>
-							<?php
-							$query = "SELECT * FROM roles";
-							$query_run = mysqli_query($connection, $query);
-							while ($row = mysqli_fetch_assoc($query_run)) {
-							?>
-								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
-							<?php } ?>
-						</select>
+						<label> Nội dung </label>
+						<textarea type="text" name="content" id="content1" class="form-control" 
+							rows="5" placeholder="Nhập nội dung"></textarea>
 					</div>
 
 				</div>
@@ -142,13 +93,13 @@ include('includes/navbar.php');
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"> Xóa tài khoản</h5>
+				<h5 class="modal-title" id="exampleModalLabel"> Xóa tin tức</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 
-			<form action="deleteAccount.php" method="POST">
+			<form action="deleteNews.php" method="POST">
 
 				<div class="modal-body">
 
@@ -184,7 +135,7 @@ include('includes/navbar.php');
 		<?php } ?>
 		<div class="card-header py-3">
 			
-			<h6 class="m-0 font-weight-bold text-primary">Tài khoản
+			<h6 class="m-0 font-weight-bold text-primary">Đơn hàng
 				<button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addadminprofile">
 					Thêm
 				</button>
@@ -194,16 +145,15 @@ include('includes/navbar.php');
 		<div class="card-body">
 			<div class="table-responsive">
 				<?php
-				$query = "SELECT * FROM users";
+				$query = "SELECT * FROM news";
 				$query_run = mysqli_query($connection, $query);
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							<th> Họ và tên </th>
-							<th> Tên đăng nhập </th>
-							<th> Email </th>
-							<th> Số điện thoại </th>
+							<th> Mã </th>
+							<th> Tiêu đề </th>
+							<th> Nội dung </th>
 							<th> Sửa </th>
 							<th> Xóa </th>
 						</tr>
@@ -214,13 +164,12 @@ include('includes/navbar.php');
 							while ($row = mysqli_fetch_assoc($query_run)) {
 						?>
 								<tr>
+									<td><?php echo $row['code']; ?></td>
 									<td><?php echo $row['name']; ?></td>
-									<td><?php echo $row['username']; ?></td>
-									<td><?php echo $row['email']; ?></td>
-									<td><?php echo $row['phone_number']; ?></td>
+									<td><?php echo $row['content']; ?></td>
 									<td>
-										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['id']; ?>"
-										data-address="<?php echo $row['address']; ?>" data-role="<?php echo $row['role_id']; ?>"> Sửa</button>
+										<button type="button" class="btn btn-secondary editBtn" id="editBtn" 
+											value="<?php echo $row['id']; ?>"> Sửa</button>
 									</td>
 									<td>
 										<!-- <a href="#" class="deleteBtn" id="deleteBtn" value="<?php echo $row['id']; ?>">
@@ -264,15 +213,9 @@ include('includes/footer.php');
 			}).get();
 
 			$('#id').val(id);
-			$('#fullname').val(data[0]);
-			$('#username').val(data[1]);
-			$('#email').val(data[2]);
-			$('#phonenumber').val(data[3]);
-
-			var address = $(this).attr("data-address");
-			$('#address').val(address);
-			var role = $(this).attr("data-role");
-			$('#role').val(role);
+			$('#code').val(data[0]);
+			$('#name').val(data[1]);
+			$('#content1').val(data[2]);
 		});
 	});
 </script>

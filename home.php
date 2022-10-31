@@ -27,7 +27,7 @@ include('includes/scripts.php')
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tài khoản</div>
               <div class="h5 mb-0 font-weight-bold text-gray-800">
 			  <?php
-				$sql = "SELECT idadmin from admin ";
+				$sql = "SELECT id from users ";
 				$query = mysqli_query($connection, $sql);
 				$totalAccount = mysqli_num_rows($query);
 				?>
@@ -50,7 +50,7 @@ include('includes/scripts.php')
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Doanh thu</div>
 <?php
-				$sql = "SELECT idsanpham from sanpham ";
+				$sql = "SELECT id from products ";
 				$query = mysqli_query($connection, $sql);
 				$totalProduct = mysqli_num_rows($query);
 				?>
@@ -72,7 +72,7 @@ include('includes/scripts.php')
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Đơn hàng</div>
               <?php
-				$sql = "SELECT idsanpham from sanpham ";
+				$sql = "SELECT id from products ";
 				$query = mysqli_query($connection, $sql);
 				$totalProduct = mysqli_num_rows($query);
 				?>
@@ -94,7 +94,7 @@ include('includes/scripts.php')
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Sản phẩm</div>
 			  <?php
-				$sql = "SELECT idsanpham from sanpham ";
+				$sql = "SELECT id from products ";
 				$query = mysqli_query($connection, $sql);
 				$totalProduct = mysqli_num_rows($query);
 				?>
