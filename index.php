@@ -1,5 +1,6 @@
 <?php
 include('includes/header.php'); 
+session_start();
 ?>
 
 
@@ -21,12 +22,15 @@ include('includes/header.php');
               <div class="text-center">
                 <p class="h4 text-gray-900 mb-4">Đăng nhập</p>
                 <?php
-                    if(isset($_SESSION['status']) && $_SESSION['status'] !='') 
-                    {
-                        echo '<h6 class="font-italic text-danger"> '.$_SESSION['status'].' </h6>';
-                        unset($_SESSION['status']);
-                    }
-                ?>
+					if(isset($_SESSION["status"]) && $_SESSION["status"] != ''){
+				?>
+				<div class="alert alert-<?=$_SESSION['status_code']?>">
+					<?php
+						echo $_SESSION['status'];
+						unset($_SESSION['status']);
+					?>
+				</div>
+				<?php } ?>
               </div>
 
                 <form class="user" action="login.php" method="POST">

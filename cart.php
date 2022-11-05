@@ -50,12 +50,12 @@ include('includes/navbar.php');
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Sửa tin tức</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Cập nhật đơn hàng</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="editNews.php" method="POST" enctype = "multipart/form-data">
+			<form action="editCart.php" method="POST">
 				<input type="hidden" name="id" id="id">
 				<div class="modal-body">
 					<div class="form-group">
@@ -63,17 +63,8 @@ include('includes/navbar.php');
 						<input type="text" name="code" id="code" class="form-control" disabled>
 					</div>
 					<div class="form-group">
-						<label> Tiêu đề </label>
+						<label> Trạng thái </label>
 						<input type="text" name="name" id="name" class="form-control" placeholder="Nhập tiêu đề" required>
-					</div>
-					<div class="form-group">
-						<label> Ảnh </label>
-						<input type="file" name="image" id="image" class="form-control-file">
-					</div>
-					<div class="form-group">
-						<label> Nội dung </label>
-						<textarea type="text" name="content" id="content1" class="form-control" 
-							rows="5" placeholder="Nhập nội dung"></textarea>
 					</div>
 
 				</div>
@@ -145,17 +136,17 @@ include('includes/navbar.php');
 		<div class="card-body">
 			<div class="table-responsive">
 				<?php
-				$query = "SELECT * FROM news";
+				$query = "SELECT * FROM orders";
 				$query_run = mysqli_query($connection, $query);
 				?>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							<th> Mã </th>
-							<th> Tiêu đề </th>
-							<th> Nội dung </th>
-							<th> Xem </th>
-							<th> Cập nhật </th>
+							<th> Mã đơn hàng </th>
+							<th> Ngày đặt </th>
+							<th> Tổng tiền </th>
+							<th> Trạng thái </th>
+							<th> Xem chi tiết </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -164,16 +155,35 @@ include('includes/navbar.php');
 							while ($row = mysqli_fetch_assoc($query_run)) {
 						?>
 								<tr>
-									<td><?php echo $row['code']; ?></td>
-									<td><?php echo $row['name']; ?></td>
-									<td><?php echo $row['content']; ?></td>
+									<td><?php echo $row['id']; ?></td>
+									<td><?php echo date("d/m/Y", strtotime($row['created_date'])); ?></td>
+									<td><?php echo $row['total']; ?></td>
 									<td>
-										<button type="button" class="btn btn-danger deleteBtn" 
-											id="deleteBtn" value="<?php echo $row['id']; ?>"> Xem </button>
+										<?php 
+											$status = $row['status']; 
+											
+											if($status == 0){
+												$content = 'Chờ xử lý';
+												$type = 'secondary';
+												$disable = '';
+											} elseif($status == 1){
+												$content = 'Đang vận chuyển';
+												$type = 'primary';
+												$disable = '';
+											} elseif($status == 2){
+												$content = 'Đã giao thành công';
+												$type = 'success';
+												$disable = 'disabled';
+											}
+										?>
+										<a href="updateCart.php?id=<?= $row['id']; ?>">
+											<button class="btn btn-<?=$type?>" <?= $disable ?>><?=$content?></button>
+										</a>
 									</td>
 									<td>
-										<button type="button" class="btn btn-secondary editBtn" id="editBtn" 
-											value="<?php echo $row['id']; ?>"> Sửa </button>
+										<a href="viewCart.php?id=<?= $row['id']; ?>">
+											<button class="btn btn-secondary">Xem</button>
+										</a>
 									</td>
 								</tr>
 						<?php
