@@ -1,6 +1,8 @@
 <?php
 include('includes/header.php');
 include('includes/navbar.php');
+
+$id = $_GET['id'];
 ?>
 
 <div class="container-fluid">
@@ -10,15 +12,13 @@ include('includes/navbar.php');
 		<div class="card-header py-3">
 			
 			<h6 class="m-0 font-weight-bold text-primary">Chi tiết đơn hàng
-			<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="float: right;"><i
-        		class="fas fa-download fa-sm text-white-50"></i> In hóa đơn</a>
+			<a href="exportCartDetail.php?id=<?=$id?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="float: right;"><i
+        		class="fas fa-download fa-sm text-white-50"></i> Xuất hóa đơn</a>
 			</h6>
 		</div>
 
 		<div class="card-body">
 			<?php
-				$id = $_GET['id'];
-
 				$query = "SELECT orders.id as id, orders.created_date as created_date, 
 						orders.status as status, payments.name as payment,
 						users.name as fullname, users.username as username, 
@@ -87,7 +87,6 @@ include('includes/navbar.php');
 					</thead>
 					<tbody>
 						<?php
-						$id = $_GET['id'];
 						$sql = "SELECT products.name as product_name, order_detail.quantity as quantity, order_detail.price as price FROM order_detail 
 								JOIN orders ON order_detail.order_id = orders.id
 								JOIN products ON order_detail.product_id = products.id

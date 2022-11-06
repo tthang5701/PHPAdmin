@@ -127,9 +127,9 @@ include('includes/navbar.php');
 		<div class="card-header py-3">
 			
 			<h6 class="m-0 font-weight-bold text-primary">Đơn hàng
-				<button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addadminprofile">
+				<!-- <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addadminprofile">
 					Thêm
-				</button>
+				</button> -->
 			</h6>
 		</div>
 
