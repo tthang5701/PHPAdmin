@@ -157,8 +157,8 @@ include('includes/navbar.php');
 								<tr>
 									<td><?php echo $row['id']; ?></td>
 									<td><?php echo date("d/m/Y", strtotime($row['created_date'])); ?></td>
-									<td><?php echo $row['total']; ?></td>
-									<td>
+									<td class="right"><?php echo $row['total']; ?></td>
+									<td class="center">
 										<?php 
 											$status = $row['status']; 
 											
@@ -180,7 +180,7 @@ include('includes/navbar.php');
 											<button class="btn btn-<?=$type?>" <?= $disable ?>><?=$content?></button>
 										</a>
 									</td>
-									<td>
+									<td class="center">
 										<a href="viewCart.php?id=<?= $row['id']; ?>">
 											<button class="btn btn-secondary">Xem</button>
 										</a>

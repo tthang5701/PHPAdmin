@@ -148,10 +148,10 @@ include('includes/navbar.php');
 								<tr>
 									<td><?php echo $row['id']; ?></td>
 									<td><?php echo $row['name']; ?></td>
-									<td>
+									<td class="center">
 										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['i']; ?>"> Sửa</button>
 									</td>
-									<td>
+									<td class="center">
 										<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" value="<?php echo $row['id']; ?>"> Xóa </button>
 									</td>
 								</tr>

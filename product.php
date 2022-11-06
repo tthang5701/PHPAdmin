@@ -240,15 +240,15 @@ include('includes/navbar.php');
 								<tr>
 									<td><?php echo $row['id']; ?></td>
 									<td><?php echo $row['name']; ?></td>
-									<td><?php echo $row['price']; ?></td>
-									<td><?php echo $row['quantity']; ?></td>
-									<td>
+									<td class="right"><?php echo $row['price']; ?></td>
+									<td class="right"><?php echo $row['quantity']; ?></td>
+									<td class="center">
 										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['id']; ?>"
 											data-category="<?php echo $row['category_id']; ?>" data-brand="<?php echo $row['brand_id']; ?>"
 											data-content="<?php echo $row['content']; ?>" data-description="<?php echo $row['description']; ?>"
 											data-image="<?php echo $row['image']; ?>"> Sửa </button>
 									</td>
-									<td>
+									<td class="center">
 										<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" value="<?php echo $row['id']; ?>"> Xóa </button>
 									</td>
 								</tr>

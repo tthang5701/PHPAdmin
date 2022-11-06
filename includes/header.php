@@ -27,6 +27,14 @@
 		input[type="number"] {
 			-moz-appearance: textfield;
 		}
+		
+		.right {
+			text-align: right;
+		}
+
+		.center {
+			text-align: center;
+		}
 	</style>
 </head>
 

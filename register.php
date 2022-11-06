@@ -218,11 +218,11 @@ include('includes/navbar.php');
 									<td><?php echo $row['username']; ?></td>
 									<td><?php echo $row['email']; ?></td>
 									<td><?php echo $row['phone_number']; ?></td>
-									<td>
+									<td class="center">
 										<button type="button" class="btn btn-secondary editBtn" id="editBtn" value="<?php echo $row['id']; ?>"
 										data-address="<?php echo $row['address']; ?>" data-role="<?php echo $row['role_id']; ?>"> Sửa</button>
 									</td>
-									<td>
+									<td class="center">
 										<!-- <a href="#" class="deleteBtn" id="deleteBtn" value="<?php echo $row['id']; ?>">
 											<i class="fa fa-trash" aria-hidden="true" style="color: #f14c4c;"></i>
 										</a> -->

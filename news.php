@@ -167,11 +167,11 @@ include('includes/navbar.php');
 									<td><?php echo $row['code']; ?></td>
 									<td><?php echo $row['name']; ?></td>
 									<td><?php echo $row['content']; ?></td>
-									<td>
+									<td class="center">
 										<button type="button" class="btn btn-secondary editBtn" id="editBtn" 
 											value="<?php echo $row['id']; ?>"> Sửa</button>
 									</td>
-									<td>
+									<td class="center">
 										<button type="button" class="btn btn-danger deleteBtn" 
 											id="deleteBtn" value="<?php echo $row['id']; ?>"> Xóa </button>
 									</td>

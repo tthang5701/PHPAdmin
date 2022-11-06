@@ -102,16 +102,16 @@ $id = $_GET['id'];
 								<tr>
 									<td><?= $count ?></td>
 									<td><?= $row['product_name'] ?></td>
-									<td><?= $row['quantity']; ?></td>
-									<td><?= $row['price']; ?></td>
-									<td><?= $row['quantity']*$row['price'] ?></td>
+									<td class="right"><?= $row['quantity']; ?></td>
+									<td class="right"><?= $row['price']; ?></td>
+									<td class="right"><?= $row['quantity']*$row['price'] ?></td>
 								</tr>
 						<?php
 							}
 						?>
 						<tr>
 							<td colspan="4" style="text-align: right; font-weight: bold;">Thành tiền</td>
-							<td><?= $total ?></td>
+							<td class="right"><?= $total ?></td>
 						</tr>
 						<?php
 						} else {
