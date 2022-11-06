@@ -10,7 +10,7 @@ include('./security.php')
 		<div class="sidebar-brand-icon rotate-n-15">
 			<i class="fas fa-laugh-wink"></i>
 		</div>
-		<div class="sidebar-brand-text mx-3">FUNDA <sup>WEB IT</sup></div>
+		<div class="sidebar-brand-text mx-3">QUẢN TRỊ</div>
 	</a>
 
 	<!-- Divider -->
@@ -72,7 +72,7 @@ include('./security.php')
 	<li class="nav-item <?= $page == 'register.php' ? 'active' : ''; ?>">
 		<a class="nav-link" href="register.php">
 			<i class="fas fa-fw fa fa-cog"></i>
-			<span>Tạo tài khoản</span></a>
+			<span>Tài khoản</span></a>
 	</li>
 
 	<!-- Divider -->
