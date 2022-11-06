@@ -1,6 +1,5 @@
 <?php
 	header("Content-Type: application/xls");    
-	header("font-family: 'Times New Roman', Times, serif");
 	header("Pragma: no-cache"); 
 	header("Expires: 0");
  
@@ -31,17 +30,17 @@
 		} elseif($status == 2){
 			$content = 'Đã giao thành công';
 		}
-		$output .= "<div><label>Mã đơn hàng: ".$id."</label>
+		$output .= "<div style='font-family: Times New Roman'><label>Mã đơn hàng: ".$id."</label>
 					<label>Tên khách hàng: ".($row['fullname'] != null ? $row['fullname'] : $row['username'])."</label></div>
-					<div><label>Ngày đặt: ".date('d/m/Y', strtotime($row['created_date']))."</label>
+					<div style='font-family: Times New Roman'><label>Ngày đặt: ".date('d/m/Y', strtotime($row['created_date']))."</label>
 					<label>Địa chỉ: ".$row['address']."</label></div>
-					<div><label>Phương thức thanh toán: ".$row['payment']."</label>
+					<div style='font-family: Times New Roman'><label>Phương thức thanh toán: ".$row['payment']."</label>
 					<label>Trạng thái: ".$content."</label></div>
 					";
 	}
  
 	$output .="
-		<table>
+		<table style='font-family: Times New Roman' border='1px solid'>
 			<thead>
 				<tr>
 					<th>STT</th>
@@ -64,6 +63,7 @@
 	if (mysqli_num_rows($query_run) > 0) {
 		while ($row = mysqli_fetch_assoc($query_run)) {
 			$count += 1;
+			$total += $row['quantity'] * $row['price'];
 			$output .= "
 					<tr>
 						<td>".$count."</td>
@@ -77,6 +77,10 @@
 	}
  
 	$output .="
+				<tr>
+					<td colspan='4' style='text-align: right; font-weight: bold;'>Thành tiền</td>
+					<td style='text-align: right'>".$total."</td>
+				</tr>
 			</tbody>
  
 		</table>
