@@ -37,9 +37,9 @@
 					<tr>
 						<td>".$count."</td>
 						<td>".$row['product_name']."</td>
-						<td>".$row['quantity']."</td>
-						<td>".$row['price']."</td>
-						<td>".$row['quantity'] * $row['price']."</td>
+						<td>".number_format($row['quantity'])."</td>
+						<td>".number_format($row['price'])."</td>
+						<td>".number_format($row['quantity'] * $row['price'])."</td>
 					</tr>
 				";
 		}

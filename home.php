@@ -53,7 +53,7 @@ include('includes/navbar.php');
 				$query = mysqli_query($connection, $sql);
 				$totalProduct = $query->fetch_assoc();
 				?>
-			  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalProduct["total"]; ?></div>
+			  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalProduct["total"] == null ? 0 : $totalProduct["total"]; ?></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

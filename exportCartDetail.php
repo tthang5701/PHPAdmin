@@ -68,9 +68,9 @@
 					<tr>
 						<td>".$count."</td>
 						<td>".$row['product_name']."</td>
-						<td>".$row['quantity']."</td>
-						<td>".$row['price']."</td>
-						<td>".$row['quantity'] * $row['price']."</td>
+						<td>".number_format($row['quantity'])."</td>
+						<td>".number_format($row['price'])."</td>
+						<td>".number_format($row['quantity'] * $row['price'])."</td>
 					</tr>
 				";
 		}
@@ -79,7 +79,7 @@
 	$output .="
 				<tr>
 					<td colspan='4' style='text-align: right; font-weight: bold;'>Thành tiền</td>
-					<td style='text-align: right'>".$total."</td>
+					<td style='text-align: right'>".number_format($total)."</td>
 				</tr>
 			</tbody>
  
