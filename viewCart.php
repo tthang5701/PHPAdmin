@@ -115,7 +115,7 @@ $id = $_GET['id'];
 						</tr>
 						<?php
 						} else {
-							echo "<td colspan='5' style='text-align: center;'>No Record Found</td>";
+							echo "<tr><td colspan='5' style='text-align: center;'>Không có bản ghi</td><tr>";
 						}
 						?>
 					</tbody>

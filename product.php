@@ -255,7 +255,7 @@ include('includes/navbar.php');
 						<?php
 							}
 						} else {
-							echo "No Record Found";
+							echo "<tr><td colspan='5' style='text-align: center;'>Không có bản ghi</td><tr>";
 						}
 						?>
 					</tbody>
