@@ -157,7 +157,7 @@ include('includes/navbar.php');
 								<tr>
 									<td><?php echo $row['id']; ?></td>
 									<td><?php echo date("d/m/Y", strtotime($row['created_date'])); ?></td>
-									<td class="right"><?php echo $row['total']; ?></td>
+									<td class="right"><?php echo number_format($row['total']); ?></td>
 									<td class="center">
 										<?php 
 											$status = $row['status']; 
