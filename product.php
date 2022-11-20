@@ -238,7 +238,7 @@ include('includes/navbar.php');
 							while ($row = mysqli_fetch_assoc($query_run)) {
 						?>
 								<tr>
-									<td><?php echo $row['id']; ?></td>
+									<td><?php echo $row['code']; ?></td>
 									<td><?php echo $row['name']; ?></td>
 									<td class="right"><?php echo number_format($row['price']); ?></td>
 									<td class="right"><?php echo number_format($row['quantity']); ?></td>

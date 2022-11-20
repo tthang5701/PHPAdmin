@@ -169,7 +169,7 @@ include('includes/navbar.php');
 											} elseif($status == 1){
 												$content = 'Đang vận chuyển';
 												$type = 'primary';
-												$disable = '';
+												$disable = 'disabled';
 											} elseif($status == 2){
 												$content = 'Đã giao thành công';
 												$type = 'success';

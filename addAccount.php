@@ -13,7 +13,7 @@ if(isset($_POST['registerbtn']))
     $role_id = $_POST['role_id'];
 	$avatar = $_FILES['avatar']["name"];
 
-    $username_query = "SELECT * FROM admin WHERE username='$username' ";
+    $username_query = "SELECT * FROM users WHERE username='$username' ";
     $username_query_run = mysqli_query($connection, $username_query);
     if(mysqli_num_rows($username_query_run) > 0)
     {
