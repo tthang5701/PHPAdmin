@@ -254,7 +254,7 @@ include('./security.php')
 						echo '<img  class="img-profile rounded-circle" src=\'../avatar/'.$_SESSION['avatar'].'\' >';
 
 						?> -->
-						<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+						<img class="img-profile rounded-circle" src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg">
 					</a>
 					<!-- Dropdown - User Information -->
 					<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
